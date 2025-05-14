@@ -2,7 +2,7 @@
 
 This is a basic blog starter kit extracted out of my blog at https://saewitz.com
 
-It is designed to be simple and performant (largely static content), but also flexible. All posts are written in MDX and rendered on the server (via React Server Components). It includes powerful Footnotes (sidebar and on mobile touch). Social cards are generated for each post. Posts can be written as drafts and will be hidden from indexing (but visitable).
+It is designed to be simple and performant (largely static content), but also flexible. All posts are written in MDX and rendered on the server (via React Server Components). It includes powerful Footnotes (sidebar and on mobile touch). Social cards are generated for each post. Posts can be written as drafts and will be hidden from indexing (but visitable). RSS feed is generated for you.
 
 It includes content-collections, tailwind, and a few nice-to-have components. This is intended to be forked and abused, take what you want, throw away what you don't, and add anything.
 

@@ -3,8 +3,6 @@ import { ImageResponse } from 'next/og';
 import config from '../config';
 import { PostProps } from './page';
 
-// Image metadata
-
 export const alt = 'Blog Post';
 export const size = {
   width: 1200,
