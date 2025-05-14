@@ -5,6 +5,7 @@ import getPosts, { getPost } from '@/lib/getPosts';
 import { format, parseISO } from 'date-fns';
 import { notFound } from 'next/navigation';
 import FootnotesFooter from '@/components/FootnotesFooter';
+import config from '../config';
 
 export interface PostProps {
   params: Promise<{ slug: string }>;
@@ -69,7 +70,7 @@ export async function generateMetadata(props: PostProps) {
     openGraph: {
       type: 'article',
       publishedTime: parseISO(post.date).toISOString(),
-      authors: ['Ernest Hemingway'],
+      authors: [config.author],
       tags: post.tags,
     },
   };
