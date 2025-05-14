@@ -29,6 +29,7 @@ export default function RootLayout({
     <html lang="en" data-theme="dark">
       <head>
         <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/feed.xml" />
+        <meta name="template" content="switz/rsc-mdx-blog-starter" />
       </head>
       <body className={goo.className}>
         <main className="content mx-5 flex flex-col gap-y-6 md:mx-0 md:grid md:grid-cols-[1fr_min(58ch,100vw)_1fr]">
