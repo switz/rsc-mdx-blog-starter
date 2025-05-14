@@ -1,5 +1,5 @@
 export default {
   emoji: '🥨',
   author: 'Ernest Hemingway',
-  domain: 'example.com',
+  domain: 'rsc-mdx-blog.saewitz.com',
 };
