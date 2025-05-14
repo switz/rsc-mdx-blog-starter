@@ -1,8 +1,7 @@
 import getPosts, { getPost } from '@/lib/getPosts';
 import { ImageResponse } from 'next/og';
-import { PostProps } from './page';
-import emoji from '../config';
 import config from '../config';
+import { PostProps } from './page';
 
 // Image metadata
 
@@ -12,7 +11,6 @@ export const size = {
   height: 630,
 };
 
-export const dynamic = 'force-static';
 export const runtime = 'nodejs';
 export const contentType = 'image/png';
 

@@ -10,11 +10,12 @@ export interface PostProps {
   params: Promise<{ slug: string }>;
 }
 
+export const revalidate = 3600; // invalidate every hour
+
 export default async function Page(
   props: PostProps & { searchParams?: Promise<Record<string, string>> }
 ) {
   const params = await props.params;
-  const searchParams = await props.searchParams;
   const post = getPost(params.slug, 'true');
 
   if (!post) return notFound();
@@ -30,12 +31,6 @@ export default async function Page(
         </Alert>
       )}
       <div>
-        {post.header && (
-          <div
-            dangerouslySetInnerHTML={{ __html: post.header }}
-            className="mx-auto flex justify-center post-header"
-          />
-        )}
         <h1>{post.title}</h1>
         <h2 className="byline flex flex-col justify-center font-mono text-sm md:flex-row">
           {post.subtitle}
@@ -45,7 +40,7 @@ export default async function Page(
           </span>
         </h2>
       </div>
-      <Content searchParams={searchParams} />
+      <Content />
       <FootnotesFooter />
 
       {/* <MDXContent code={Content} components={useMDXComponents()} /> */}
@@ -79,8 +74,6 @@ export async function generateMetadata(props: PostProps) {
     },
   };
 }
-
-export const dynamic = 'force-static';
 
 export async function generateStaticParams() {
   return getPosts('true').map((post) => ({

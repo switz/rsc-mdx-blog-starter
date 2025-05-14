@@ -5,6 +5,8 @@ import Code from '@/bright/bright';
 import ClickToCopy from '@/components/ClickToCopy';
 import config from '../config';
 
+export const revalidate = 3600; // invalidate every hour
+
 export default async function () {
   const res = await GET();
 

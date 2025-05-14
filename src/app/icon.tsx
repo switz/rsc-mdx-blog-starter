@@ -8,6 +8,8 @@ export const size = {
 };
 export const contentType = 'image/png';
 
+export const revalidate = 3600; // invalidate every hour
+
 // Image generation
 export default function Icon() {
   return new ImageResponse(
