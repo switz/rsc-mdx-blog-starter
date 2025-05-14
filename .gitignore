@@ -1,0 +1,15 @@
+node_modules
+.next/
+.DS_Store
+out/
+.open-next
+.wrangler
+
+earth/
+
+.vercel/
+
+.env
+
+.contentlayer
+.content-collections
