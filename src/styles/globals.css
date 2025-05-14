@@ -45,8 +45,8 @@
 @layer base {
   :root {
     --bg: #333;
-    --bg-alt: #1a3c4f;
-    --tooltip-bg: #111c22;
+    --bg-alt: #555;
+    --tooltip-bg: #444;
     --primary: #7cb8ec;
     --primary-bg: #306a9c;
     --secondary: #6692B0;
@@ -184,7 +184,7 @@
   .bleed {
     width: 720px;
     max-width: 100%;
-    @apply flex flex-col p-3 flex justify-center bg-gray-600 text-center;
+    @apply flex flex-col p-3 flex justify-center bg-gray-500 text-center;
   }
 
   /* disabled nested bleeds */

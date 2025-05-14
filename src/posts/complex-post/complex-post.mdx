@@ -3,20 +3,21 @@ title: Complex Post
 subtitle: this is a subtitle
 date: 2025-05-13
 # is_draft: true
-tags: ['technical', 'react', 'javascript']
+tags: ['universal']
 ---
 
 import Image from 'next/image';
 
 Directories work too.
 
-Code + Syntax Highlighting built in (server rendered via Bright).
+Code + Syntax Highlighting built in (server rendered via Bright). With tabs/titles if you want them.
 
 ```tsx
+// title hello.js
 const foo = 1;
 ```
 
-We have bleeding (move outside of the blog container for effect). And open-graph images (for social cards).
+We have content bleeding (content can expand outside of the blog container for effect). And open-graph images (for social cards).
 
 <Image src="/complex-post/opengraph-image" alt="opengraph image" width={720} height="390" className='bleed' />
 
