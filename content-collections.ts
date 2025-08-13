@@ -2,12 +2,13 @@ import { defineCollection, defineConfig } from '@content-collections/core';
 import fs from 'fs';
 import path from 'path';
 import slugify from 'slugify';
+import z from 'zod/v4';
 
 const posts = defineCollection({
   name: 'posts',
   directory: 'src/posts',
   include: '**/*.mdx',
-  schema: (z) => ({
+  schema: z.object({
     title: z.string(),
     subtitle: z.string(),
     date: z.string(),
