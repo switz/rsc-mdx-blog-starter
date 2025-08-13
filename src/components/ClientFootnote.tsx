@@ -7,7 +7,14 @@ import {
   autoPlacement,
   safePolygon,
 } from '@floating-ui/react';
-import { m, AnimatePresence, useAnimate, LazyMotion, domAnimation } from 'framer-motion';
+import {
+  m,
+  AnimatePresence,
+  useAnimate,
+  LazyMotion,
+  domAnimation,
+  AnimationGeneratorType,
+} from 'framer-motion';
 import React, { useState } from 'react';
 
 export interface Props {
@@ -74,7 +81,7 @@ const Footnote = ({ index, content, children }: Props) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ type: 'ease-in-out', duration: 0.2 }}
+              transition={{ type: 'ease-in-out' as AnimationGeneratorType, duration: 0.2 }}
               ref={refs.setFloating}
               style={floatingStyles}
               className="z-50 inline-flex max-w-[240px] rounded-lg border-2 border-gray-950 bg-gray-900 p-2 shadow-lg xl:hidden"
