@@ -28,7 +28,7 @@ const getFonts = async () => {
 export default async function Image(props: PostProps) {
   const params = await props.params;
 
-  const post = getPost(params.slug, 'true');
+  const post = getPost(params.slug, true);
   const title = post?.title;
 
   return new ImageResponse(
@@ -95,7 +95,7 @@ export default async function Image(props: PostProps) {
 }
 
 export async function generateStaticParams() {
-  return getPosts('true').map((post) => ({
+  return getPosts(true).map((post) => ({
     slug: post.slug,
     // bypass: post.is_draft ? 'true' : undefined,
   }));

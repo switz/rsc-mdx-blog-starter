@@ -17,7 +17,7 @@ export default async function Page(
   props: PostProps & { searchParams?: Promise<Record<string, string>> }
 ) {
   const params = await props.params;
-  const post = getPost(params.slug, 'true');
+  const post = getPost(params.slug, true);
 
   if (!post) return notFound();
 
@@ -52,7 +52,7 @@ export default async function Page(
 export async function generateMetadata(props: PostProps) {
   const params = await props.params;
 
-  const post = getPost(params.slug, 'true');
+  const post = getPost(params.slug, true);
 
   if (!post) {
     return {
@@ -77,7 +77,7 @@ export async function generateMetadata(props: PostProps) {
 }
 
 export async function generateStaticParams() {
-  return getPosts('true').map((post) => ({
+  return getPosts(true).map((post) => ({
     slug: post.slug,
   }));
 }
