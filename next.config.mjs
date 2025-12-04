@@ -4,7 +4,7 @@ import withMDX from '@next/mdx';
 
 const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
-  output: 'standalone',
+  output: process.env.NEXT_OUTPUT === 'standalone' ? 'standalone' : 'export',
   images: {
     unoptimized: true,
   },

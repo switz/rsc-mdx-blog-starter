@@ -19,6 +19,7 @@ COPY . .
 ENV CI=true
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV NEXT_OUTPUT=standalone
 
 RUN pnpm build
 

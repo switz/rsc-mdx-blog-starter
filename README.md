@@ -12,6 +12,22 @@ It includes content-collections, tailwind, and a few nice-to-have components. Th
 
 Posts are written in the posts folder. You can flat-file it or use complex directories. Add `is_draft: true` to mark it as a draft.
 
+### Build Modes
+
+The build output is controlled by the `NEXT_OUTPUT` environment variable:
+
+- **Static export (default)**: `pnpm build` outputs to `out/` for static hosting (Cloudflare Pages, etc.)
+- **Standalone**: `NEXT_OUTPUT=standalone pnpm build` outputs a self-contained Node.js server
+
+### Docker
+
+Build and run with Docker (uses standalone mode):
+
+```bash
+docker build -t rsc-blog .
+docker run -p 3000:3000 rsc-blog
+```
+
 If you do end up publishing a fork of this, please drop a link in the Github issues, I'd love to see it!
 
 ### TODO
