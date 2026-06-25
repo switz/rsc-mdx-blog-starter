@@ -1,7 +1,7 @@
-import getPosts, { getPost } from '@/lib/getPosts';
-import { ImageResponse } from 'next/og';
+import { getPost } from '@/lib/getPosts';
+import { ImageResponse } from 'takumi-js/response';
 import config from '../config';
-import { PostProps } from './page';
+import { segmentParams } from './params';
 
 export const alt = 'Blog Post';
 export const size = {
@@ -9,14 +9,14 @@ export const size = {
   height: 630,
 };
 
-export const runtime = 'nodejs';
 export const contentType = 'image/png';
 
 const getFonts = async () => {
   return await Promise.all(
     ([400, 900] as const).map(async (weight) => {
+      // takumi only parses TTF/OTF for custom fonts — not WOFF/WOFF2.
       const fontRes = await fetch(
-        `https://cdn.jsdelivr.net/fontsource/fonts/merriweather@latest/latin-${weight}-normal.woff`
+        `https://cdn.jsdelivr.net/fontsource/fonts/merriweather@latest/latin-${weight}-normal.ttf`
       );
       const font = await fontRes.arrayBuffer();
       return { name: 'Merriweather', data: font, style: 'normal' as const, weight };
@@ -25,10 +25,10 @@ const getFonts = async () => {
 };
 
 // Image generation
-export default async function Image(props: PostProps) {
-  const params = await props.params;
+export default async function Image() {
+  const { slug } = await segmentParams.get();
 
-  const post = getPost(params.slug, true);
+  const post = getPost(slug, true);
   const title = post?.title;
 
   return new ImageResponse(
@@ -92,11 +92,4 @@ export default async function Image(props: PostProps) {
       fonts: await getFonts(),
     }
   );
-}
-
-export async function generateStaticParams() {
-  return getPosts(true).map((post) => ({
-    slug: post.slug,
-    // bypass: post.is_draft ? 'true' : undefined,
-  }));
 }

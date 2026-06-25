@@ -1,7 +1,7 @@
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
+import type { MDXComponents } from 'mdx/types';
 
 import clsx from 'clsx';
-import Code from './bright/bright';
 import Footnote from './components/Footnote';
 import { ServerLinkTag } from './components/ServerLinkTag';
 import { Button } from './components/ui/button';
@@ -10,16 +10,14 @@ import { cn } from './lib/utils';
 
 export type PropsWithCN = PropsWithChildren & { className?: string };
 
-export { Code };
-
-// This file is required to use MDX in `app` directory.
-export function useMDXComponents(components: React.ReactNode[]) {
+// This file customizes how MDX elements/components render across all MDX files.
+// Fenced code blocks are highlighted at build time by rehype-shiki (see timber.config.ts),
+// so there is no `pre`/`Code` override here.
+export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     // Allows customizing built-in components, e.g. to add styling.
     // h1: ({ children }) => <h1 style={{ fontSize: "100px" }}>{children}</h1>,
     ...components,
-    pre: Code,
-    Code,
     Footnote,
     ServerLinkTag,
     Button,

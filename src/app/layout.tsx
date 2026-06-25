@@ -15,9 +15,6 @@ export const metadata = {
   metadataBase: new URL('https://' + config.domain),
 };
 
-// export const runtime = 'edge'; // 'nodejs' (default) | 'edge'
-export const revalidate = 3600; // invalidate every hour
-
 export default function RootLayout({
   // Layouts must accept a children prop.
   // This will be populated with nested layouts or pages

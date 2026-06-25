@@ -1,7 +1,9 @@
 node_modules
 .next/
+.timber
 .DS_Store
 out/
+dist
 .open-next
 .wrangler
 

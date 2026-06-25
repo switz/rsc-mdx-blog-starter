@@ -52,9 +52,6 @@ posts.forEach((post) => {
   });
 });
 
-export const runtime = 'nodejs';
-export const revalidate = 3600; // invalidate every hour
-
 export async function GET() {
   return new Response(feed.rss2(), {
     headers: {

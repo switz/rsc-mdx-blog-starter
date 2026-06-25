@@ -1,11 +1,8 @@
 import { Tag } from '@/components/ui/tag';
 import { GET } from '../feed.xml/route';
 
-import Code from '@/bright/bright';
 import ClickToCopy from '@/components/ClickToCopy';
 import config from '../config';
-
-export const revalidate = 3600; // invalidate every hour
 
 export default async function () {
   const res = await GET();
@@ -35,20 +32,9 @@ export default async function () {
           <ClickToCopy text={`https://${config.domain}/feed.xml`} />
         </div>
       </div>
-      <Code
-        lang="xml"
-        data-line-numbers
-        className="[&_pre]:max-h-96"
-        annotations={[
-          {
-            name: 'title',
-            query: 'feed.xml',
-            ranges: [],
-          },
-        ]}
-      >
-        {text}
-      </Code>
+      <pre className="max-h-96 overflow-auto rounded-md bg-[#24292e] p-4 font-mono text-sm text-white">
+        <code>{text}</code>
+      </pre>
     </>
   );
 }

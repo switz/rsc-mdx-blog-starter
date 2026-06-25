@@ -1,7 +1,7 @@
 'use client';
 
 import { Link } from 'lucide-react';
-import { usePathname } from 'next/navigation';
+import { usePathname } from '@timber-js/app/client';
 import * as React from 'react';
 import { Tag, TagProps } from './tag';
 

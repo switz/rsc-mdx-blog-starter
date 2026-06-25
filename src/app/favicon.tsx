@@ -1,18 +1,17 @@
 import { ImageResponse } from 'takumi-js/response';
 import config from './config';
 
-// Image metadata
+// Served at /favicon.ico (timber keeps the .ico URL for browser compatibility).
 export const size = {
   width: 32,
   height: 32,
 };
-export const contentType = 'image/png';
+export const contentType = 'image/x-icon';
 
-// Image generation
-export default function Icon() {
+// Favicon generation — emits a real ICO via takumi's `format: 'ico'`.
+export default function Favicon() {
   return new ImageResponse(
     (
-      // ImageResponse JSX element
       <div
         style={{
           fontSize: 18,
@@ -30,11 +29,9 @@ export default function Icon() {
         {config.emoji}
       </div>
     ),
-    // ImageResponse options
     {
-      // For convenience, we can re-use the exported icons size metadata
-      // config to also set the ImageResponse's width and height.
       ...size,
+      format: 'ico',
     }
   );
 }
