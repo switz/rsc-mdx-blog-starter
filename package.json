@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
+  "packageManager": "pnpm@11.9.0",
   "scripts": {
     "dev": "timber dev",
     "build": "timber build",
@@ -60,5 +61,12 @@
   },
   "resolutions": {
     "@types/react": "19.2.7"
+  },
+  "pnpm": {
+    "overrides": {
+      "react": "19.2.7",
+      "react-dom": "19.2.7",
+      "@types/react": "19.2.7"
+    }
   }
 }
