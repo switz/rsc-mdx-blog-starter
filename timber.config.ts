@@ -7,7 +7,7 @@ import rehypeShiki from '@shikijs/rehype';
 import { transformerTitle } from './src/lib/shiki-title-transformer.ts';
 
 export default defineConfig({
-  output: 'server',
+  output: 'static',
   adapter: cloudflare(),
   // Home page (app/(home)/page.mdx) and post bodies are MDX.
   pageExtensions: ['tsx', 'ts', 'jsx', 'js', 'md', 'mdx'],
