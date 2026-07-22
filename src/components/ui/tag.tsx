@@ -55,8 +55,7 @@ export const tagVariants = cva(
 );
 
 export interface TagProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof tagVariants> {
+  extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof tagVariants> {
   asChild?: boolean;
 }
 

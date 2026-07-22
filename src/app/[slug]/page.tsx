@@ -1,27 +1,30 @@
 import 'server-only';
 
+import type { ComponentType } from 'react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import getPosts, { getPost } from '@/lib/getPosts';
 import { format, parseISO } from 'date-fns';
-import { notFound } from 'next/navigation';
+import { deny } from '@timber-js/app/server';
+import type { Metadata } from '@timber-js/app/server';
 import FootnotesFooter from '@/components/FootnotesFooter';
 import config from '../config';
+import { segmentParams } from './params';
 
-export interface PostProps {
-  params: Promise<{ slug: string }>;
-}
+// Post bodies live in src/posts/**/*.mdx. import.meta.glob resolves each one to a
+// real ES module at build time (compiled by @mdx-js/rollup) — no runtime eval.
+const mdxModules = import.meta.glob<{ default: ComponentType }>('../../posts/**/*.mdx');
 
-export const revalidate = 3600; // invalidate every hour
+export default async function Page() {
+  const { slug } = await segmentParams.get();
+  const post = getPost(slug, true);
 
-export default async function Page(
-  props: PostProps & { searchParams?: Promise<Record<string, string>> }
-) {
-  const params = await props.params;
-  const post = getPost(params.slug, true);
+  if (!post) deny(404);
 
-  if (!post) return notFound();
+  const key = `../../posts/${post._meta.filePath}`;
+  const loader = mdxModules[key];
+  if (!loader) deny(404);
 
-  const { default: Content } = await import(`../../posts/${post._meta.filePath}`);
+  const { default: Content } = await loader();
 
   return (
     <>
@@ -43,16 +46,20 @@ export default async function Page(
       </div>
       <Content />
       <FootnotesFooter />
-
-      {/* <MDXContent code={Content} components={useMDXComponents()} /> */}
     </>
   );
 }
 
-export async function generateMetadata(props: PostProps) {
-  const params = await props.params;
+export async function generateStaticSegmentParams() {
+  const posts = getPosts(false);
 
-  const post = getPost(params.slug, true);
+  return posts.map((post) => ({ slug: post.slug }));
+}
+
+export async function metadata(): Promise<Metadata> {
+  const { slug } = await segmentParams.get();
+
+  const post = getPost(slug, true);
 
   if (!post) {
     return {
@@ -63,21 +70,14 @@ export async function generateMetadata(props: PostProps) {
   }
 
   return {
-    title: post?.title,
+    title: post.title,
     robots: {
-      index: !post?.is_draft, // only index if its not a draft
+      index: !post.is_draft, // only index if it's not a draft
     },
     openGraph: {
       type: 'article',
       publishedTime: parseISO(post.date).toISOString(),
       authors: [config.author],
-      tags: post.tags,
     },
   };
-}
-
-export async function generateStaticParams() {
-  return getPosts(true).map((post) => ({
-    slug: post.slug,
-  }));
 }

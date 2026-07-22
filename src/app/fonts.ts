@@ -1,6 +1,6 @@
-import { Geist } from 'next/font/google';
+import { Geist } from '@timber-js/app/fonts/google';
 
 export const goo = Geist({
   subsets: ['latin'],
-  weight: ['400', '700', '900'],
+  display: 'swap',
 });

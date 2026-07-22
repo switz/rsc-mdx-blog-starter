@@ -1,6 +1,6 @@
 import config from '@/app/config';
 import { cn } from '@/lib/utils';
-import Link from 'next/link';
+import { Link } from '@timber-js/app/client';
 
 export function Header() {
   return (

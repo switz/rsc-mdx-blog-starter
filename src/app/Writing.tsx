@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import { parseISO } from 'date-fns';
 import { format } from 'date-fns/format';
 import { Rss } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from '@timber-js/app/client';
 
 export default async function Writing() {
   const posts = getPosts();

@@ -6,11 +6,9 @@ date: 2025-05-13
 tags: ['universal']
 ---
 
-import Image from 'next/image';
-
 Directories work too.
 
-Code + Syntax Highlighting built in (server rendered via Bright). With tabs/titles if you want them.
+Code + Syntax Highlighting built in (highlighted at build time via Shiki). Add a `// title` line for a filename bar.
 
 ```tsx
 // title hello.js
@@ -19,7 +17,13 @@ const foo = 1;
 
 We have content bleeding (content can expand outside of the blog container for effect). And open-graph images (for social cards).
 
-<Image src="/complex-post/opengraph-image" alt="opengraph image" width={720} height="390" className='bleed' />
+<img
+src="/complex-post/opengraph-image.png"
+  alt="opengraph image"
+  width={720}
+  height={390}
+  className="bleed"
+/>
 
 And inline footnotes<Footnote content="Hello!" /> for easy reading.
 
