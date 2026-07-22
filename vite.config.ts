@@ -13,6 +13,7 @@ export default defineConfig({
       '@/app': path.resolve(import.meta.dirname, 'src/app'),
       '@/public': path.resolve(import.meta.dirname, 'public'),
       '@': path.resolve(import.meta.dirname, 'src'),
+      '@takumi-rs/wasm/auto': '@takumi-rs/wasm/vite',
     },
   },
 });

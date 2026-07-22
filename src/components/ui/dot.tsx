@@ -52,8 +52,7 @@ export const dotVariants = cva('w-2 h-2', {
 });
 
 export interface DotProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof dotVariants> {
+  extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof dotVariants> {
   asChild?: boolean;
 }
 

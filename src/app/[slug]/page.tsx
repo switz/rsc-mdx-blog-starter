@@ -2,7 +2,7 @@ import 'server-only';
 
 import type { ComponentType } from 'react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { getPost } from '@/lib/getPosts';
+import getPosts, { getPost } from '@/lib/getPosts';
 import { format, parseISO } from 'date-fns';
 import { deny } from '@timber-js/app/server';
 import type { Metadata } from '@timber-js/app/server';
@@ -48,6 +48,12 @@ export default async function Page() {
       <FootnotesFooter />
     </>
   );
+}
+
+export async function generateStaticSegmentParams() {
+  const posts = getPosts(false);
+
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 export async function metadata(): Promise<Metadata> {

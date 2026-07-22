@@ -26,10 +26,6 @@
       "content-collections": ["./.content-collections/generated"]
     }
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    ".content-collections/generated"
-  ],
+  "include": ["**/*.ts", "**/*.tsx", ".content-collections/generated"],
   "exclude": ["node_modules", ".timber"]
 }
