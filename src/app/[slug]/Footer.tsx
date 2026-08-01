@@ -1,9 +1,10 @@
 import { getPost } from '@/lib/getPosts';
 import config from '../config';
-import { segmentParams } from './params';
+import { getSegmentParams } from '@timber-js/app/server';
+import { SEGMENT_PATH } from './$segment';
 
 export default async function Footer() {
-  const { slug } = await segmentParams.get();
+  const { slug } = getSegmentParams(SEGMENT_PATH);
 
   const blog = getPost(slug);
 

@@ -1,7 +1,8 @@
 import { getPost } from '@/lib/getPosts';
 import { ImageResponse } from 'takumi-js/response';
 import config from '../config';
-import { segmentParams } from './params';
+import { getSegmentParams } from '@timber-js/app/server';
+import { SEGMENT_PATH } from './$segment';
 
 const getFonts = async () => {
   return await Promise.all(
@@ -18,13 +19,12 @@ const getFonts = async () => {
 
 // Image generation
 export default async function Image() {
-  const { slug } = segmentParams.get();
+  const { slug } = getSegmentParams(SEGMENT_PATH);
 
   const post = getPost(slug, true);
   const title = post?.title;
 
   return new ImageResponse(
-    // ImageResponse JSX element
     <div
       style={{
         background: '#252A31',

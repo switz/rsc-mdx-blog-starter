@@ -4,18 +4,18 @@ import type { ComponentType } from 'react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import getPosts, { getPost } from '@/lib/getPosts';
 import { format, parseISO } from 'date-fns';
-import { deny } from '@timber-js/app/server';
+import { deny, getSegmentParams } from '@timber-js/app/server';
 import type { Metadata } from '@timber-js/app/server';
 import FootnotesFooter from '@/components/FootnotesFooter';
 import config from '../config';
-import { segmentParams } from './params';
+import { SEGMENT_PATH } from './$segment';
 
 // Post bodies live in src/posts/**/*.mdx. import.meta.glob resolves each one to a
 // real ES module at build time (compiled by @mdx-js/rollup) — no runtime eval.
 const mdxModules = import.meta.glob<{ default: ComponentType }>('../../posts/**/*.mdx');
 
 export default async function Page() {
-  const { slug } = await segmentParams.get();
+  const { slug } = getSegmentParams(SEGMENT_PATH);
   const post = getPost(slug, true);
 
   if (!post) deny(404);
@@ -57,7 +57,7 @@ export async function generateStaticSegmentParams() {
 }
 
 export async function metadata(): Promise<Metadata> {
-  const { slug } = await segmentParams.get();
+  const { slug } = getSegmentParams(SEGMENT_PATH);
 
   const post = getPost(slug, true);
 

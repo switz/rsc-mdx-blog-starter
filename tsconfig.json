@@ -16,6 +16,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "allowImportingTsExtensions": true,
+    "rootDirs": [".", ".timber/types"],
     "paths": {
       "@/components/*": ["./src/components/*"],
       "@/ui/*": ["./src/components/ui/*"],
@@ -27,5 +28,5 @@
     }
   },
   "include": ["**/*.ts", "**/*.tsx", ".content-collections/generated"],
-  "exclude": ["node_modules", ".timber"]
+  "exclude": ["node_modules"]
 }
