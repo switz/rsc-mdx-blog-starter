@@ -3,14 +3,6 @@ import { ImageResponse } from 'takumi-js/response';
 import config from '../config';
 import { segmentParams } from './params';
 
-export const alt = 'Blog Post';
-export const size = {
-  width: 1200,
-  height: 630,
-};
-
-export const contentType = 'image/png';
-
 const getFonts = async () => {
   return await Promise.all(
     ([400, 900] as const).map(async (weight) => {
@@ -26,7 +18,7 @@ const getFonts = async () => {
 
 // Image generation
 export default async function Image() {
-  const { slug } = await segmentParams.get();
+  const { slug } = segmentParams.get();
 
   const post = getPost(slug, true);
   const title = post?.title;
@@ -86,7 +78,8 @@ export default async function Image() {
     {
       // For convenience, we can re-use the exported opengraph-image
       // size config to also set the ImageResponse's width and height.
-      ...size,
+      width: 1200,
+      height: 630,
       fonts: await getFonts(),
     }
   );
